@@ -6,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
@@ -17,21 +16,20 @@ namespace DataAccess.Concrete.EntityFramework
         {
             using (ReCapContext context = new ReCapContext())
             {
-                var result = from car in context.Cars
-                             join brand in context.Brands
-                             on car.BrandId equals brand.Id
-                             join color in context.Colors
-                             on car.ColorId equals color.Id
-                             select new CarDetailDto
+                var result = (from car in context.Cars
+                              join brand in context.Brands on car.BrandId equals brand.Id
+                              join model in context.Models on car.ModelId equals model.Id
+                              join color in context.Colors on car.ColorId equals color.Id
+                              select new CarDetailDto
                              {
-                                 CarId = car.Id,
-                                 Name = car.Name,
+                                 Id = car.Id,
+                                 BrandName = brand.Name,
+                                 ModelName = model.Name,
+                                 ColorName = color.Name,
                                  Description = car.Description,
                                  DailyPrice = car.DailyPrice,
                                  ModelYear = car.ModelYear,
-                                 BrandName = brand.Name,
-                                 ColorName = color.Name,
-                             };
+                             });
 
                 return result.ToList();
             }

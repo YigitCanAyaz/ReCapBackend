@@ -75,8 +75,6 @@ namespace ConsoleUI
             //PrintCar(carManager.GetById(1));
             //PrintCar(carManager.GetById(2));
 
-            PrintCarDetails(carManager.GetCarDetails());
-
 
             //Car newCar = new Car() { BrandId = 1, ColorId = 3, Name = "Viviano", ModelYear = 2011, DailyPrice = 87000.10, Description = "Gıcır Gıcır Araba" };
             //carManager.Add(newCar);
@@ -114,8 +112,8 @@ namespace ConsoleUI
 
         private static void PrintCarDetail(CarDetailDto singleCarDetail)
         {
-            Console.WriteLine("CarDetail Id: " + singleCarDetail.CarId);
-            Console.WriteLine("CarDetail Name: " + singleCarDetail.Name);
+            Console.WriteLine("CarDetail Id: " + singleCarDetail.Id);
+            Console.WriteLine("CarDetail Brand Name: " + singleCarDetail.BrandName);
             Console.WriteLine("CarDetail Description: " + singleCarDetail.Description);
             Console.WriteLine("CarDetail Model Year: " + singleCarDetail.ModelYear);
             Console.WriteLine("CarDetail Daily Price: " + singleCarDetail.DailyPrice);
