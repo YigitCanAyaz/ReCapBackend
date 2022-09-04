@@ -55,12 +55,12 @@ namespace DataAccess.Concrete.InMemory
 
         public void Update(Car car)
         {
-            var result = GetById(car.Id);
-            result.BrandId = car.BrandId;
-            result.ColorId = car.ColorId;
-            result.ModelYear = car.ModelYear;
-            result.DailyPrice = car.DailyPrice;
-            result.Description = car.Description;
+            //var result = GetById(car.Id);
+            //result.BrandId = car.BrandId;
+            //result.ColorId = car.ColorId;
+            //result.ModelYear = car.ModelYear;
+            //result.DailyPrice = car.DailyPrice;
+            //result.Description = car.Description;
         }
     }
 }
