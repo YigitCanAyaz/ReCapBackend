@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -10,13 +12,14 @@ namespace Business.Concrete
 {
     public class ModelManager : IModelService
     {
-        IModelDal _modelDal;
+        private readonly IModelDal _modelDal;
 
         public ModelManager(IModelDal modelDal)
         {
             _modelDal = modelDal;
         }
 
+        [ValidationAspect(typeof(ModelValidator))]
         public IResult Add(Model model)
         {
             _modelDal.Add(model);
