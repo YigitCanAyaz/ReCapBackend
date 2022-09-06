@@ -1,10 +1,10 @@
-﻿using Core.Constants.Messages;
-using Core.Utilities.Results;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using Core.Constants.Messages;
+using Core.Utilities.Results;
 
 namespace Core.Utilities.Helpers
 {
@@ -23,7 +23,7 @@ namespace Core.Utilities.Helpers
 
             var type = Path.GetExtension(file.FileName);
             var typeValid = CheckFileTypeValid(type);
-            var randomName = GuidHelper.CreateGuid();
+            var randomName = Guid.NewGuid().ToString();
 
             if (typeValid.Message != null)
             {

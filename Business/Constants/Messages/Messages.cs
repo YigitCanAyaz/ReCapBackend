@@ -6,5 +6,6 @@ namespace Business.Constants.Messages
 {
     public class Messages : IMessages
     {
+        public const string CarImageNotExist = "";
     }
 }
