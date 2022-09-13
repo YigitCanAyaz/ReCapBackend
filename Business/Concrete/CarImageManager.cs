@@ -8,6 +8,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using Business.Constants.Messages;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Business;
 using Core.Utilities.Helpers;
@@ -25,6 +26,7 @@ namespace Business.Concrete
             _carImageDal = carDal;
         }
 
+        [CacheRemoveAspect("ICarImageService.GetAll")]
         [ValidationAspect(typeof(CarImageValidator))]
         public IResult Add(IFormFile file, CarImage carImage)
         {
@@ -50,6 +52,7 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
+        [CacheRemoveAspect("ICarImageService.Get")]
         public IResult Delete(CarImage carImage)
         {
             var result = FileHelper.Delete(carImage.ImagePath);
@@ -63,7 +66,8 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        public IDataResult<List<CarImage>> GetByCarId(int carId)
+        [CacheAspect]
+        public IDataResult<List<CarImage>> GetAllByCarId(int carId)
         {
             var result = BusinessRules.Run(CheckIfCarHasAnyImage(carId));
 
@@ -82,16 +86,19 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll(c => c.CarId == carId));
         }
 
+        [CacheAspect]
         public IDataResult<List<CarImage>> GetAll()
         {
             return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll());
         }
 
+        [CacheAspect]
         public IDataResult<CarImage> GetById(int id)
         {
             return new SuccessDataResult<CarImage>(_carImageDal.Get(c => c.Id == id));
         }
 
+        [CacheRemoveAspect("ICarImageService.Get")]
         [ValidationAspect(typeof(CarImageValidator))]
         public IResult Update(IFormFile file, CarImage carImage)
         {
@@ -115,6 +122,8 @@ namespace Business.Concrete
             _carImageDal.Update(carImage);
             return new SuccessResult();
         }
+
+        /********************************** PRIVATE METHODS ********************************** */
 
         private IResult CheckIfCarImageLimitExceeded(int carId)
         {

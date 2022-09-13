@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
+using Core.Aspects.Autofac.Caching;
 
 namespace Business.Concrete
 {
@@ -21,6 +22,7 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
+        [CacheRemoveAspect("ICarService.GetAll")]
         [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
@@ -28,43 +30,51 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
+        [CacheRemoveAspect("ICarService.Get")]
         public IResult Delete(Car car)
         {
             _carDal.Delete(car);
             return new SuccessResult();
         }
 
+        [CacheAspect]
         public IDataResult<List<Car>> GetAll()
         {
             Thread.Sleep(10000);
             return new SuccessDataResult<List<Car>>(_carDal.GetAll());
         }
 
+        [CacheAspect]
         public IDataResult<Car> GetById(int id)
         {
             return new SuccessDataResult<Car>(_carDal.Get(c => c.Id == id));
         }
 
+        [CacheAspect]
         public IDataResult<List<CarDetailDto>> GetAllCarDetails()
         {
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetAllCarDetails());
         }
 
-        public IDataResult<List<CarDetailDto>> GetCarDetailsById(int id)
+        [CacheAspect]
+        public IDataResult<List<CarDetailDto>> GetAllCarDetailsById(int id)
         {
-            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailsById(id));
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetAllCarDetailsById(id));
         }
 
-        public IDataResult<List<Car>> GetCarsByModelId(int modelId)
+        [CacheAspect]
+        public IDataResult<List<Car>> GetAllCarsByModelId(int modelId)
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ModelId == modelId));
         }
 
-        public IDataResult<List<Car>> GetCarsByColorId(int colorId)
+        [CacheAspect]
+        public IDataResult<List<Car>> GetAllCarsByColorId(int colorId)
         {
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == colorId));
         }
 
+        [CacheRemoveAspect("ICarService.Get")]
         [ValidationAspect(typeof(CarValidator))]
         public IResult Update(Car car)
         {

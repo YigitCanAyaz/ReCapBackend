@@ -7,6 +7,7 @@ using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Core.Aspects.Autofac.Caching;
 
 namespace Business.Concrete
 {
@@ -19,6 +20,7 @@ namespace Business.Concrete
             _modelDal = modelDal;
         }
 
+        [CacheRemoveAspect("IModelService.GetAll")]
         [ValidationAspect(typeof(ModelValidator))]
         public IResult Add(Model model)
         {
@@ -26,22 +28,26 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
+        [CacheRemoveAspect("IModelService.Get")]
         public IResult Delete(Model model)
         {
             _modelDal.Delete(model);
             return new SuccessResult();
         }
 
+        [CacheAspect]
         public IDataResult<List<Model>> GetAll()
         {
             return new SuccessDataResult<List<Model>>(_modelDal.GetAll());
         }
 
+        [CacheAspect]
         public IDataResult<Model> GetById(int id)
         {
             return new SuccessDataResult<Model>(_modelDal.Get(b => b.Id == id));
         }
 
+        [CacheRemoveAspect("IModelService.Get")]
         [ValidationAspect(typeof(ModelValidator))]
         public IResult Update(Model model)
         {
