@@ -7,34 +7,58 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Color = Entities.Concrete.Color;
 
 namespace DataAccess.Concrete.EntityFramework
 {
     public class EfCarDal : EfEntityRepositoryBase<Car, ReCapContext>, ICarDal
     {
-        public List<CarDetailDto> GetCarDetails()
+        public List<CarDetailDto> GetCarDetailsById(int carId)
         {
             using (ReCapContext context = new ReCapContext())
             {
                 var result = (from car in context.Cars
                               join color in context.Colors on car.ColorId equals color.Id
-                              join carModel in context.Models on car.ModelId equals carModel.Id
-
-                              from brandModel in context.Models
-                              join brand in context.Brands on brandModel.BrandId equals brand.Id
+                              join model in context.Models on car.ModelId equals model.Id
+                              join brand in context.Brands on model.BrandId equals brand.Id
+                              where car.Id == carId
                               select new CarDetailDto
-                             {
-                                 Id = car.Id,
-                                 BrandName = brand.Name,
-                                 ModelName = carModel.Name,
-                                 ColorName = color.Name,
-                                 Description = car.Description,
-                                 DailyPrice = car.DailyPrice,
-                                 ModelYear = car.ModelYear,
-                             });
+                              {
+                                  Id = car.Id,
+                                  BrandName = brand.Name,
+                                  ModelName = model.Name,
+                                  ColorName = color.Name,
+                                  Description = car.Description,
+                                  DailyPrice = car.DailyPrice,
+                                  ModelYear = car.ModelYear,
+                              });
 
                 return result.ToList();
             }
         }
+
+        public List<CarDetailDto> GetAllCarDetails()
+        {
+            using (ReCapContext context = new ReCapContext())
+            {
+                var result = (from car in context.Cars
+                              join color in context.Colors on car.ColorId equals color.Id
+                              join model in context.Models on car.ModelId equals model.Id
+                              join brand in context.Brands on model.BrandId equals brand.Id
+                              select new CarDetailDto
+                              {
+                                  Id = car.Id,
+                                  BrandName = brand.Name,
+                                  ModelName = model.Name,
+                                  ColorName = color.Name,
+                                  Description = car.Description,
+                                  DailyPrice = car.DailyPrice,
+                                  ModelYear = car.ModelYear,
+                              });
+
+                return result.ToList();
+            }
+        }
+
     }
 }

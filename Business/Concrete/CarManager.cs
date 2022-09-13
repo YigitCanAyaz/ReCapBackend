@@ -8,6 +8,7 @@ using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace Business.Concrete
 {
@@ -35,6 +36,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Car>> GetAll()
         {
+            Thread.Sleep(10000);
             return new SuccessDataResult<List<Car>>(_carDal.GetAll());
         }
 
@@ -43,9 +45,14 @@ namespace Business.Concrete
             return new SuccessDataResult<Car>(_carDal.Get(c => c.Id == id));
         }
 
-        public IDataResult<List<CarDetailDto>> GetCarDetails()
+        public IDataResult<List<CarDetailDto>> GetAllCarDetails()
         {
-            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails());
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetAllCarDetails());
+        }
+
+        public IDataResult<List<CarDetailDto>> GetCarDetailsById(int id)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailsById(id));
         }
 
         public IDataResult<List<Car>> GetCarsByModelId(int modelId)

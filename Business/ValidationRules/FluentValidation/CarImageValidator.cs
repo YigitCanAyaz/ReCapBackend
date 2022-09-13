@@ -1,17 +1,18 @@
-﻿using Entities.Concrete;
+﻿using Core.Entities.Concrete;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Entities.Concrete;
 
 namespace Business.ValidationRules.FluentValidation
 {
-    public class ColorValidator : AbstractValidator<Color>
+    public class CarImageValidator : AbstractValidator<CarImage>
     {
-        public ColorValidator()
+        public CarImageValidator()
         {
             // RuleFor().();
-            RuleFor(c => c.Name).NotEmpty();
+            RuleFor(c => c.CarId).NotEmpty();
         }
     }
 }

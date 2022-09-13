@@ -11,6 +11,8 @@ namespace Business.ValidationRules.FluentValidation
         public CustomerValidator()
         {
             // RuleFor().();
+            RuleFor(c => c.UserId).NotEmpty();
+            RuleFor(c => c.CompanyName).NotEmpty();
         }
     }
 }

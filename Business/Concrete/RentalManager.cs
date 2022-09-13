@@ -7,6 +7,7 @@ using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Core.Utilities.Business;
 
 namespace Business.Concrete
 {
@@ -22,13 +23,14 @@ namespace Business.Concrete
         [ValidationAspect(typeof(RentalValidator))]
         public IResult Add(Rental rental)
         {
-            if (rental.ReturnDate == null)
+            var result = BusinessRules.Run(CheckIfCarHasBeenReturned(rental.Id));
+
+            if (result != null)
             {
-                _rentalDal.Add(rental);
-                return new SuccessResult();
+                return result;
             }
 
-            return new ErrorResult();
+            return new SuccessResult();
         }
 
         public IResult Delete(Rental rental)
@@ -47,9 +49,33 @@ namespace Business.Concrete
             return new SuccessDataResult<Rental>(_rentalDal.Get(b => b.Id == id));
         }
 
+        public IResult Return(Rental rental)
+        {
+            rental.ReturnDate = DateTime.Now;
+
+            Update(rental);
+
+            return new SuccessResult();
+        }
+
         public IResult Update(Rental rental)
         {
             _rentalDal.Update(rental);
+            return new SuccessResult();
+        }
+
+        private IResult CheckIfCarHasBeenReturned(int id)
+        {
+            var result = _rentalDal.GetAll(r => r.CarId == id);
+
+            foreach (var car in result)
+            {
+                if (car.ReturnDate == DateTime.MinValue)
+                {
+                    return new ErrorResult();
+                }
+            }
+
             return new SuccessResult();
         }
     }

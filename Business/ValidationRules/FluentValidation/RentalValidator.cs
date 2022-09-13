@@ -11,6 +11,10 @@ namespace Business.ValidationRules.FluentValidation
         public RentalValidator()
         {
             // RuleFor().();
+            RuleFor(c => c.CarId).NotEmpty();
+            RuleFor(c => c.CustomerId).NotEmpty();
+            RuleFor(c => c.RentDate).NotEmpty();
+            RuleFor(r => r.ReturnDate).Null();
         }
     }
 }
