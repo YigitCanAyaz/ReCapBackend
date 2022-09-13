@@ -92,6 +92,7 @@ namespace Business.Concrete
             return new SuccessDataResult<CarImage>(_carImageDal.Get(c => c.Id == id));
         }
 
+        [ValidationAspect(typeof(CarImageValidator))]
         public IResult Update(IFormFile file, CarImage carImage)
         {
             var result = BusinessRules.Run(CheckIfCarIdIsSame(carImage.Id, carImage.CarId));
