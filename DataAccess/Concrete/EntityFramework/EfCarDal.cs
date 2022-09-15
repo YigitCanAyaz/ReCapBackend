@@ -7,13 +7,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Color = Entities.Concrete.Color;
 
 namespace DataAccess.Concrete.EntityFramework
 {
     public class EfCarDal : EfEntityRepositoryBase<Car, ReCapContext>, ICarDal
     {
-        public List<CarDetailDto> GetAllCarDetailsById(int carId)
+        public CarDetailDto GetCarDetailsById(int carId)
         {
             using (ReCapContext context = new ReCapContext())
             {
@@ -33,7 +32,7 @@ namespace DataAccess.Concrete.EntityFramework
                                   ModelYear = car.ModelYear,
                               });
 
-                return result.ToList();
+                return result.SingleOrDefault();
             }
         }
 
