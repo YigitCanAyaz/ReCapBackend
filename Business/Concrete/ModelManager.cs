@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Core.Aspects.Autofac.Caching;
+using Entities.DTOs;
 
 namespace Business.Concrete
 {
@@ -41,10 +42,20 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Model>>(_modelDal.GetAll());
         }
 
+        public IDataResult<List<ModelDetailDto>> GetAllModelDetails()
+        {
+            return new SuccessDataResult<List<ModelDetailDto>>(_modelDal.GetAllModelDetails());
+        }
+
         [CacheAspect]
         public IDataResult<Model> GetById(int id)
         {
             return new SuccessDataResult<Model>(_modelDal.Get(b => b.Id == id));
+        }
+
+        public IDataResult<ModelDetailDto> GetModelDetailsById(int id)
+        {
+            return new SuccessDataResult<ModelDetailDto>(_modelDal.GetModelDetailsById(id));
         }
 
         [CacheRemoveAspect("IModelService.Get")]

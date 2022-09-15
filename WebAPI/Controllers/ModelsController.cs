@@ -74,5 +74,27 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+
+        [HttpGet("getallmodeldetails")]
+        public IActionResult GetAllModelDetails()
+        {
+            var result = _modelService.GetAllModelDetails();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("getmodeldetailsbyid")]
+        public IActionResult GetModelDetailsById(int id)
+        {
+            var result = _modelService.GetModelDetailsById(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
     }
 }
