@@ -13,7 +13,7 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfModelDal : EfEntityRepositoryBase<Model, ReCapContext>, IModelDal
     {
-        public List<ModelDetailDto> GetAllModelDetails()
+        public List<ModelDetailDto> GetAllModelDetails(Expression<Func<ModelDetailDto, bool>> filter = null)
         {
             using (ReCapContext context = new ReCapContext())
             {
@@ -26,17 +26,16 @@ namespace DataAccess.Concrete.EntityFramework
                                   Name = model.Name
                               });
 
-                return result.ToList();
+                return filter == null ? result.ToList() : result.Where(filter).ToList();
             }
         }
 
-        public ModelDetailDto GetModelDetailsById(int id)
+        public ModelDetailDto GetModelDetails(Expression<Func<ModelDetailDto, bool>> filter)
         {
             using (ReCapContext context = new ReCapContext())
             {
                 var result = (from model in context.Models
                               join brand in context.Brands on model.BrandId equals brand.Id
-                              where model.Id == id
                               select new ModelDetailDto
                               {
                                   Id = model.Id,
@@ -44,7 +43,7 @@ namespace DataAccess.Concrete.EntityFramework
                                   Name = model.Name
                               });
 
-                return result.SingleOrDefault();
+                return result.Where(filter).SingleOrDefault();
             }
         }
     }

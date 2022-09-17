@@ -67,5 +67,15 @@ namespace DataAccess.Concrete.InMemory
             //result.DailyPrice = car.DailyPrice;
             //result.Description = car.Description;
         }
+
+        public List<CarDetailDto> GetAllCarDetails(Expression<Func<CarDetailDto, bool>> filter = null)
+        {
+            throw new NotImplementedException();
+        }
+
+        public CarDetailDto GetCarDetails(Expression<Func<CarDetailDto, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

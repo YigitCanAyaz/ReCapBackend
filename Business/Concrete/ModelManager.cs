@@ -55,7 +55,7 @@ namespace Business.Concrete
 
         public IDataResult<ModelDetailDto> GetModelDetailsById(int id)
         {
-            return new SuccessDataResult<ModelDetailDto>(_modelDal.GetModelDetailsById(id));
+            return new SuccessDataResult<ModelDetailDto>(_modelDal.GetModelDetails(m => m.Id == id));
         }
 
         [CacheRemoveAspect("IModelService.Get")]

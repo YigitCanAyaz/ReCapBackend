@@ -13,7 +13,7 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfRentalDal : EfEntityRepositoryBase<Rental, ReCapContext>, IRentalDal
     {
-        public List<RentalDetailDto> GetAllRentalDetails()
+        public List<RentalDetailDto> GetAllRentalDetails(Expression<Func<RentalDetailDto, bool>> filter = null)
         {
             using (ReCapContext context = new ReCapContext())
             {
@@ -36,11 +36,11 @@ namespace DataAccess.Concrete.EntityFramework
                          ReturnDate = rental.ReturnDate
                      });
 
-                return result.ToList();
+                return filter == null ? result.ToList() : result.Where(filter).ToList();
             }
         }
 
-        public RentalDetailDto GetRentalDetailsById(int id)
+        public RentalDetailDto GetRentalDetails(Expression<Func<RentalDetailDto, bool>> filter)
         {
             using (ReCapContext context = new ReCapContext())
             {
@@ -51,7 +51,6 @@ namespace DataAccess.Concrete.EntityFramework
                      join brand in context.Brands on model.BrandId equals brand.Id
                      join customer in context.Customers on rental.CustomerId equals customer.Id
                      join user in context.Users on customer.UserId equals user.Id
-                     where rental.Id == id
                      select new RentalDetailDto
                      {
                          Id = rental.Id,
@@ -64,7 +63,7 @@ namespace DataAccess.Concrete.EntityFramework
                          ReturnDate = rental.ReturnDate
                      });
 
-                return result.SingleOrDefault();
+                return result.Where(filter).SingleOrDefault();
             }
         }
     }

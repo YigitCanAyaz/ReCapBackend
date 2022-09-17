@@ -13,7 +13,7 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfCustomerDal : EfEntityRepositoryBase<Customer, ReCapContext>, ICustomerDal
     {
-        public List<CustomerDetailDto> GetAllCustomerDetails()
+        public List<CustomerDetailDto> GetAllCustomerDetails(Expression<Func<CustomerDetailDto, bool>> filter = null)
         {
             using (ReCapContext context = new ReCapContext())
             {
@@ -27,26 +27,25 @@ namespace DataAccess.Concrete.EntityFramework
                                   CompanyName = customer.CompanyName
                               });
 
-                return result.ToList();
+                return filter == null ? result.ToList() : result.Where(filter).ToList();
             }
         }
 
-        public CustomerDetailDto GetCustomerDetailsById(int id)
+        public CustomerDetailDto GetCustomerDetails(Expression<Func<CustomerDetailDto, bool>> filter)
         {
             using (ReCapContext context = new ReCapContext())
             {
                 var result = (from customer in context.Customers
-                              join user in context.Users on customer.UserId equals user.Id
-                              where customer.Id == id
-                              select new CustomerDetailDto
-                              {
-                                  Id = customer.Id,
-                                  FirstName = user.FirstName,
-                                  LastName = user.LastName,
-                                  CompanyName = customer.CompanyName
-                              });
+                    join user in context.Users on customer.UserId equals user.Id
+                    select new CustomerDetailDto
+                    {
+                        Id = customer.Id,
+                        FirstName = user.FirstName,
+                        LastName = user.LastName,
+                        CompanyName = customer.CompanyName
+                    });
 
-                return result.SingleOrDefault();
+                return result.Where(filter).SingleOrDefault();
             }
         }
     }
