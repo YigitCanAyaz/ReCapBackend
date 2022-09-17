@@ -13,7 +13,7 @@ namespace WebAPI.Controllers
     [ApiController]
     public class ModelsController : ControllerBase
     {
-        IModelService _modelService;
+        private readonly IModelService _modelService;
 
         public ModelsController(IModelService modelService)
         {
