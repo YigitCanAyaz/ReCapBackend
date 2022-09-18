@@ -60,7 +60,7 @@ namespace DataAccess.Concrete.EntityFramework
                         Description = car.Description,
                         DailyPrice = car.DailyPrice,
                         ModelYear = car.ModelYear,
-                        ImagePath = (from carImage in context.CarImages where car.Id == carImage.CarId select carImage.ImagePath).ToList().Count != 0 ? (from carImage in context.CarImages where car.Id == carImage.CarId select carImage.ImagePath).ToList() : new List<string> { @"/Images/default.png" }
+                        ImagePath = (from carImage in context.CarImages where car.Id == carImage.CarId select carImage.ImagePath).ToList()
                     });
 
                 return result.Where(filter).SingleOrDefault();
