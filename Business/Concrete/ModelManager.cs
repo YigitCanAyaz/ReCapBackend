@@ -42,9 +42,16 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Model>>(_modelDal.GetAll());
         }
 
+        [CacheAspect]
         public IDataResult<List<ModelDetailDto>> GetAllModelDetails()
         {
             return new SuccessDataResult<List<ModelDetailDto>>(_modelDal.GetAllModelDetails());
+        }
+
+        [CacheAspect]
+        public IDataResult<List<Model>> GetAllModelsByBrandId(int brandId)
+        {
+            return new SuccessDataResult<List<Model>>(_modelDal.GetAll(m => m.BrandId == brandId));
         }
 
         [CacheAspect]

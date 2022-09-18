@@ -106,5 +106,20 @@ namespace Business.Concrete
             _carDal.Update(car);
             return new SuccessResult();
         }
+
+        [CacheAspect]
+        public IDataResult<List<CarDetailDto>> GetAllCarDetailsByBrandId(int brandId)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetAllCarDetails(c => c.BrandId == brandId));
+        }
+
+        [CacheAspect]
+        public IDataResult<List<CarDetailDto>> GetAllCarDetailsByColorId(int colorId)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetAllCarDetails(c => c.ColorId == colorId));
+        }
+
+        // *********************************
+
     }
 }
