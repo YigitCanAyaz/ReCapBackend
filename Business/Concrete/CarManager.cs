@@ -40,7 +40,6 @@ namespace Business.Concrete
         [CacheAspect]
         public IDataResult<List<Car>> GetAll()
         {
-            Thread.Sleep(10000);
             return new SuccessDataResult<List<Car>>(_carDal.GetAll());
         }
 
@@ -53,38 +52,13 @@ namespace Business.Concrete
         [CacheAspect]
         public IDataResult<List<CarDetailDto>> GetAllCarDetails()
         {
-            var result = _carDal.GetAllCarDetails();
-
-            // ayrı private metoda al
-
-            foreach (var carDetail in result)
-            {
-                if (carDetail.ImagePath.Count == 0)
-                {
-                    carDetail.ImagePath = new List<string>
-                    {
-                        @"/Images/default.png"
-                    };
-                }
-            }
-
-            return new SuccessDataResult<List<CarDetailDto>>(result);
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetAllCarDetails());
         }
 
         [CacheAspect]
         public IDataResult<CarDetailDto> GetCarDetailsById(int id)
         {
-            var result = _carDal.GetCarDetails(c => c.Id == id);
-
-            if (result.ImagePath.Count == 0)
-            {
-                result.ImagePath = new List<string>
-                {
-                    @"/Images/default.png"
-                };
-            }
-
-            return new SuccessDataResult<CarDetailDto>(result);
+            return new SuccessDataResult<CarDetailDto>(_carDal.GetCarDetails(c => c.Id == id));
         }
 
         [CacheAspect]
