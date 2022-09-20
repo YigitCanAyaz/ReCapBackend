@@ -162,6 +162,17 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+                
+        [HttpGet("getallcardetailsbybrandidcoloridmindailypricemaxdailyprice")]
+        public IActionResult GetAllCarDetailsByBrandIdColorIdMinDailyPriceMaxDailyPrice(int brandId, int colorId, int minDailyPrice, int maxDailyPrice)
+        {
+            var result = _carService.GetAllCarDetailsByBrandIdColorIdMinDailyPriceMaxDailyPrice(brandId, colorId, minDailyPrice, maxDailyPrice);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
 
         
     }

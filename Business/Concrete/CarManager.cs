@@ -105,6 +105,12 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetAllCarDetails(c => c.BrandId == brandId && c.ColorId == colorId));
         }
 
+        [CacheAspect]
+        public IDataResult<List<CarDetailDto>> GetAllCarDetailsByBrandIdColorIdMinDailyPriceMaxDailyPrice(int brandId, int colorId, int minDailyPrice, int maxDailyPrice)
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetAllCarDetails(c => c.BrandId == brandId && c.ColorId == colorId && c.DailyPrice >= minDailyPrice && c.DailyPrice <= maxDailyPrice));
+        }
+
         // *********************************
 
     }
