@@ -108,10 +108,10 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getrentaldetailsbyid")]
-        public IActionResult GetAllRentalDetailsByCarId(int id)
+        [HttpGet("getallrentaldetailsbycarid")]
+        public IActionResult GetAllRentalDetailsByCarId(int carId)
         {
-            var result = _rentalService.GetRentalDetailsByCarId(id);
+            var result = _rentalService.GetAllRentalDetailsByCarId(carId);
             if (result.Success)
             {
                 return Ok(result);
@@ -119,10 +119,10 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getrentaldetailsbyid")]
-        public IActionResult GetRentalDetailsCustomerId(int id)
+        [HttpGet("getallrentaldetailsbycustomerid")]
+        public IActionResult GetAllRentalDetailsByCustomerId(int customerId)
         {
-            var result = _rentalService.GetRentalDetailsCustomerId(id);
+            var result = _rentalService.GetAllRentalDetailsByCustomerId(customerId);
             if (result.Success)
             {
                 return Ok(result);
