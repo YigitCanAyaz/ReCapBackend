@@ -107,5 +107,27 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+
+        [HttpGet("getrentaldetailsbyid")]
+        public IActionResult GetAllRentalDetailsByCarId(int id)
+        {
+            var result = _rentalService.GetRentalDetailsByCarId(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("getrentaldetailsbyid")]
+        public IActionResult GetRentalDetailsCustomerId(int id)
+        {
+            var result = _rentalService.GetRentalDetailsCustomerId(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
     }
 }
