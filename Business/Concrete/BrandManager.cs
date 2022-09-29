@@ -7,6 +7,7 @@ using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Business.Constants.Messages;
 using Core.Aspects.Autofac.Caching;
 
 namespace Business.Concrete
@@ -25,14 +26,14 @@ namespace Business.Concrete
         public IResult Add(Brand brand)
         {
             _brandDal.Add(brand);
-            return new SuccessResult();
+            return new SuccessResult(Messages.BrandCreated);
         }
 
         [CacheRemoveAspect("IBrandService.Get")]
         public IResult Delete(Brand brand)
         {
             _brandDal.Delete(brand);
-            return new SuccessResult();
+            return new SuccessResult(Messages.BrandDeleted);
         }
 
         [CacheAspect]
@@ -52,7 +53,7 @@ namespace Business.Concrete
         public IResult Update(Brand brand)
         {
             _brandDal.Update(brand);
-            return new SuccessResult();
+            return new SuccessResult(Messages.BrandUpdated);
         }
     }
 }

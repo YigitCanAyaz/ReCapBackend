@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
+using Business.Constants.Messages;
 using Core.Aspects.Autofac.Caching;
 
 namespace Business.Concrete
@@ -27,14 +28,14 @@ namespace Business.Concrete
         public IResult Add(Car car)
         {
             _carDal.Add(car);
-            return new SuccessResult();
+            return new SuccessResult(Messages.CarCreated);
         }
 
         [CacheRemoveAspect("ICarService.Get")]
         public IResult Delete(Car car)
         {
             _carDal.Delete(car);
-            return new SuccessResult();
+            return new SuccessResult(Messages.CarDeleted);
         }
 
         [CacheAspect]
@@ -78,7 +79,7 @@ namespace Business.Concrete
         public IResult Update(Car car)
         {
             _carDal.Update(car);
-            return new SuccessResult();
+            return new SuccessResult(Messages.CarUpdated);
         }
 
         [CacheAspect]

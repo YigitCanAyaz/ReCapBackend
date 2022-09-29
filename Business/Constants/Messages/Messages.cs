@@ -7,16 +7,32 @@ namespace Business.Constants.Messages
 {
     public class Messages : IMessages
     {
-        public const string CarImageNotExist = "";
-        public static string AuthorizationDenied = "Yetkiniz yok";
+        public const string CarImageNotExist = "Car Image Not Exists";
+        public static string AuthorizationDenied = "Authorization Denied";
 
-        public static string UserNotFound = "Kullanıcı bulunamadı";
-        public static string PasswordError = "Şifre hatalı";
-        public static string SuccessfulLogin = "Sisteme giriş başarılı";
-        public static string UserAlreadyExists = "Bu kullanıcı zaten mevcut";
-        public static string UserRegistered = "Kullanıcı başarıyla kaydedildi";
-        public static string AccessTokenCreated = "Access token başarıyla oluşturuldu";
+        // Auth Manager
+        public static string UserRegistered = "User has been created";
+        public static string UserNotFound = "User not found";
+        public static string PasswordError = "Password is wrong";
+        public static string SuccessfulLogin = "Successful login";
+        public static string UserAlreadyExists = "User already exists";
 
-        public static string ProductNameAlreadyExists = "Ürün ismi zaten mevcut";
+        // Brand Manager
+        public static string BrandCreated = "Brand created";
+        public static string BrandUpdated= "Brand updated";
+        public static string BrandDeleted = "Brand deleted";
+
+        // CarImage Manager
+        public static string CarImageCreated = "Car Image created";
+        public static string CarImageUpdated = "Car Image updated";
+        public static string CarImageDeleted = "Car Image deleted";
+
+        // Car Manager
+        public static string CarCreated = "Car created";
+        public static string CarUpdated = "Car updated";
+        public static string CarDeleted = "Car deleted";
+
+        public static string AccessTokenCreated = "Access token is created";
+
     }
 }
