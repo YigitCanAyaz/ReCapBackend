@@ -7,6 +7,7 @@ using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Business.Constants.Messages;
 using Core.Aspects.Autofac.Caching;
 using Core.Utilities.Business;
 using Entities.DTOs;
@@ -33,14 +34,14 @@ namespace Business.Concrete
                 return result;
             }
 
-            return new SuccessResult();
+            return new SuccessResult(Messages.RentalCreated);
         }
 
         [CacheRemoveAspect("IRentalService.Get")]
         public IResult Delete(Rental rental)
         {
             _rentalDal.Delete(rental);
-            return new SuccessResult();
+            return new SuccessResult(Messages.RentalDeleted);
         }
 
         [CacheAspect]
@@ -94,7 +95,7 @@ namespace Business.Concrete
         public IResult Update(Rental rental)
         {
             _rentalDal.Update(rental);
-            return new SuccessResult();
+            return new SuccessResult(Messages.RentalUpdated);
         }
 
         /********************************** PRIVATE METHODS ********************************** */

@@ -7,6 +7,7 @@ using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Business.Constants.Messages;
 using Core.Aspects.Autofac.Caching;
 using Entities.DTOs;
 
@@ -26,14 +27,14 @@ namespace Business.Concrete
         public IResult Add(Model model)
         {
             _modelDal.Add(model);
-            return new SuccessResult();
+            return new SuccessResult(Messages.ModelCreated);
         }
 
         [CacheRemoveAspect("IModelService.Get")]
         public IResult Delete(Model model)
         {
             _modelDal.Delete(model);
-            return new SuccessResult();
+            return new SuccessResult(Messages.ModelDeleted);
         }
 
         [CacheAspect]
@@ -70,7 +71,7 @@ namespace Business.Concrete
         public IResult Update(Model model)
         {
             _modelDal.Update(model);
-            return new SuccessResult();
+            return new SuccessResult(Messages.ModelUpdated);
         }
     }
 }

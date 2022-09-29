@@ -49,7 +49,7 @@ namespace Business.Concrete
             carImage.Date = DateTime.Now;
 
             _carImageDal.Add(carImage);
-            return new SuccessResult();
+            return new SuccessResult(Messages.CarImageCreated);
         }
 
         [CacheRemoveAspect("ICarImageService.Get")]
@@ -63,7 +63,7 @@ namespace Business.Concrete
             }
 
             _carImageDal.Delete(carImage);
-            return new SuccessResult();
+            return new SuccessResult(Messages.CarImageDeleted);
         }
 
         [CacheAspect]
@@ -120,7 +120,7 @@ namespace Business.Concrete
             carImage.Date = DateTime.Now;
 
             _carImageDal.Update(carImage);
-            return new SuccessResult();
+            return new SuccessResult(Messages.CarImageUpdated);
         }
 
         /********************************** PRIVATE METHODS ********************************** */
