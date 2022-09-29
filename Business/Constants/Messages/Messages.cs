@@ -32,6 +32,29 @@ namespace Business.Constants.Messages
         public static string CarUpdated = "Car updated";
         public static string CarDeleted = "Car deleted";
 
+        // Color Manager
+        public static string ColorCreated = "Color created";
+        public static string ColorUpdated = "Color updated";
+        public static string ColorDeleted = "Color deleted";
+
+        // Customer Manager
+        public static string CustomerCreated = "Customer created";
+        public static string CustomerUpdated = "Customer updated";
+        public static string CustomerDeleted = "Customer deleted";
+
+        // Model Manager
+        public static string ModelCreated = "Model created";
+        public static string ModelUpdated = "Model updated";
+        public static string ModelDeleted = "Model deleted";
+
+        // Rental Manager
+        public static string RentalCreated = "Rental created";
+        public static string RentalUpdated = "Rental updated";
+        public static string RentalDeleted = "Rental deleted";
+
+        // User Manager
+        public static string UserCreated = "User created";
+
         public static string AccessTokenCreated = "Access token is created";
 
     }
