@@ -18,6 +18,7 @@ namespace DataAccess.Concrete.EntityFramework
             using (ReCapContext context = new ReCapContext())
             {
                 var result = (from modelColor in context.ModelColors
+                              join color in context.Colors on modelColor.ColorId equals color.Id
                               join model in context.Models on modelColor.ModelId equals model.Id
                               join brand in context.Brands on model.BrandId equals brand.Id
                               join car in context.Cars on modelColor.ModelId equals car.ModelId
@@ -28,11 +29,12 @@ namespace DataAccess.Concrete.EntityFramework
                                   BrandName = brand.Name,
                                   ModelId = model.Id,
                                   ModelName = model.Name,
+                                  ColorId = color.Id,
+                                  ColorName = color.Name,
                                   Description = car.Description,
                                   DailyPrice = car.DailyPrice,
                                   ModelYear = model.Year,
-                                  ColorName = (from color in context.Colors where modelColor.ColorId == color.Id select color.Name).ToList(),
-                                  ImagePath = (from carImage in context.CarImages where car.Id == carImage.CarId select carImage.ImagePath).ToList(),
+                                  ImagePath = (from carImage in context.CarImages where car.Id == carImage.CarId select carImage.ImagePath).ToList()
                               });
 
                 return filter == null ? result.ToList() : result.Where(filter).ToList();
@@ -44,6 +46,7 @@ namespace DataAccess.Concrete.EntityFramework
             using (ReCapContext context = new ReCapContext())
             {
                 var result = (from modelColor in context.ModelColors
+                              join color in context.Colors on modelColor.ColorId equals color.Id
                               join model in context.Models on modelColor.ModelId equals model.Id
                               join brand in context.Brands on model.BrandId equals brand.Id
                               join car in context.Cars on modelColor.ModelId equals car.ModelId
@@ -54,10 +57,11 @@ namespace DataAccess.Concrete.EntityFramework
                                   BrandName = brand.Name,
                                   ModelId = model.Id,
                                   ModelName = model.Name,
+                                  ModelYear = model.Year,
+                                  ColorId = color.Id,
+                                  ColorName = color.Name,
                                   Description = car.Description,
                                   DailyPrice = car.DailyPrice,
-                                  ModelYear = model.Year,
-                                  ColorName = (from color in context.Colors where modelColor.ColorId == color.Id select color.Name).ToList(),
                                   ImagePath = (from carImage in context.CarImages where car.Id == carImage.CarId select carImage.ImagePath).ToList()
                               });
 
