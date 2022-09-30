@@ -119,16 +119,16 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getallcardetailsbycolorid")]
-        public IActionResult GetAllCarDetailsByColorId(int colorId)
-        {
-            var result = _carService.GetAllCarDetailsByColorId(colorId);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
+        //[HttpGet("getallcardetailsbycolorid")]
+        //public IActionResult GetAllCarDetailsByColorId(int colorId)
+        //{
+        //    var result = _carService.GetAllCarDetailsByColorId(colorId);
+        //    if (result.Success)
+        //    {
+        //        return Ok(result);
+        //    }
+        //    return BadRequest(result);
+        //}
 
         [HttpGet("getallcardetailsbymodelid")]
         public IActionResult GetAllCarDetailsByModelId(int modelId)
@@ -152,27 +152,27 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getallcardetailsbybrandidcolorid")]
-        public IActionResult GetAllCarDetailsByBrandIdColorId(int brandId, int colorId)
-        {
-            var result = _carService.GetAllCarDetailsByBrandIdColorId(brandId, colorId);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
+        //[HttpGet("getallcardetailsbybrandidcolorid")]
+        //public IActionResult GetAllCarDetailsByBrandIdColorId(int brandId, int colorId)
+        //{
+        //    var result = _carService.GetAllCarDetailsByBrandIdColorId(brandId, colorId);
+        //    if (result.Success)
+        //    {
+        //        return Ok(result);
+        //    }
+        //    return BadRequest(result);
+        //}
                 
-        [HttpGet("getallcardetailsbybrandidcoloridmindailypricemaxdailyprice")]
-        public IActionResult GetAllCarDetailsByBrandIdColorIdMinDailyPriceMaxDailyPrice(int brandId, int colorId, int minDailyPrice, int maxDailyPrice)
-        {
-            var result = _carService.GetAllCarDetailsByBrandIdColorIdMinDailyPriceMaxDailyPrice(brandId, colorId, minDailyPrice, maxDailyPrice);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
+        //[HttpGet("getallcardetailsbybrandidcoloridmindailypricemaxdailyprice")]
+        //public IActionResult GetAllCarDetailsByBrandIdColorIdMinDailyPriceMaxDailyPrice(int brandId, int colorId, int minDailyPrice, int maxDailyPrice)
+        //{
+        //    var result = _carService.GetAllCarDetailsByBrandIdColorIdMinDailyPriceMaxDailyPrice(brandId, colorId, minDailyPrice, maxDailyPrice);
+        //    if (result.Success)
+        //    {
+        //        return Ok(result);
+        //    }
+        //    return BadRequest(result);
+        //}
 
         
     }

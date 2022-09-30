@@ -88,11 +88,11 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetAllCarDetails(c => c.BrandId == brandId));
         }
 
-        [CacheAspect]
-        public IDataResult<List<CarDetailDto>> GetAllCarDetailsByColorId(int colorId)
-        {
-            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetAllCarDetails(c => c.ColorId == colorId));
-        }
+        //[CacheAspect]
+        //public IDataResult<List<CarDetailDto>> GetAllCarDetailsByColorId(int colorId)
+        //{
+        //    return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetAllCarDetails(c => c.ColorId == colorId));
+        //}
 
         [CacheAspect]
         public IDataResult<List<CarDetailDto>> GetAllCarDetailsByModelId(int modelId)
@@ -100,17 +100,17 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetAllCarDetails(c => c.ModelId == modelId));
         }
 
-        [CacheAspect]
-        public IDataResult<List<CarDetailDto>> GetAllCarDetailsByBrandIdColorId(int brandId, int colorId)
-        {
-            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetAllCarDetails(c => c.BrandId == brandId && c.ColorId == colorId));
-        }
+        //[CacheAspect]
+        //public IDataResult<List<CarDetailDto>> GetAllCarDetailsByBrandIdColorId(int brandId, int colorId)
+        //{
+        //    return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetAllCarDetails(c => c.BrandId == brandId && c.ColorId == colorId));
+        //}
 
-        [CacheAspect]
-        public IDataResult<List<CarDetailDto>> GetAllCarDetailsByBrandIdColorIdMinDailyPriceMaxDailyPrice(int brandId, int colorId, int minDailyPrice, int maxDailyPrice)
-        {
-            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetAllCarDetails(c => c.BrandId == brandId && c.ColorId == colorId && c.DailyPrice >= minDailyPrice && c.DailyPrice <= maxDailyPrice));
-        }
+        //[CacheAspect]
+        //public IDataResult<List<CarDetailDto>> GetAllCarDetailsByBrandIdColorIdMinDailyPriceMaxDailyPrice(int brandId, int colorId, int minDailyPrice, int maxDailyPrice)
+        //{
+        //    return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetAllCarDetails(c => c.BrandId == brandId && c.ColorId == colorId && c.DailyPrice >= minDailyPrice && c.DailyPrice <= maxDailyPrice));
+        //}
 
         // *********************************
 
