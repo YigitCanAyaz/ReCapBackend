@@ -22,8 +22,10 @@ namespace DataAccess.Concrete.EntityFramework
                               select new ModelDetailDto
                               {
                                   Id = model.Id,
+                                  BrandId = brand.Id,
                                   BrandName = brand.Name,
-                                  Name = model.Name
+                                  Name = model.Name,
+                                  Year = model.Year
                               });
 
                 return filter == null ? result.ToList() : result.Where(filter).ToList();
@@ -39,8 +41,10 @@ namespace DataAccess.Concrete.EntityFramework
                               select new ModelDetailDto
                               {
                                   Id = model.Id,
+                                  BrandId = brand.Id,
                                   BrandName = brand.Name,
-                                  Name = model.Name
+                                  Name = model.Name,
+                                  Year = model.Year
                               });
 
                 return result.Where(filter).SingleOrDefault();

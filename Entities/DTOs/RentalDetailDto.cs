@@ -12,7 +12,7 @@ namespace Entities.DTOs
         public int CustomerId { get; set; }
         public string BrandName { get; set; }
         public string ModelName { get; set; }
-        public int ModelYear { get; set; }
+        public short ModelYear { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime RentDate { get; set; }

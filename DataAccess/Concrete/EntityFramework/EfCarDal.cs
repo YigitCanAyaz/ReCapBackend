@@ -32,7 +32,7 @@ namespace DataAccess.Concrete.EntityFramework
                                   ColorName = color.Name,
                                   Description = car.Description,
                                   DailyPrice = car.DailyPrice,
-                                  ModelYear = car.ModelYear,
+                                  ModelYear = model.Year,
                                   ImagePath = (from carImage in context.CarImages where car.Id == carImage.CarId select carImage.ImagePath).ToList()
                               });
 
@@ -55,11 +55,11 @@ namespace DataAccess.Concrete.EntityFramework
                         BrandName = brand.Name,
                         ModelId = model.Id,
                         ModelName = model.Name,
+                        ModelYear = model.Year,
                         ColorId = color.Id,
                         ColorName = color.Name,
                         Description = car.Description,
                         DailyPrice = car.DailyPrice,
-                        ModelYear = car.ModelYear,
                         ImagePath = (from carImage in context.CarImages where car.Id == carImage.CarId select carImage.ImagePath).ToList()
                     });
 

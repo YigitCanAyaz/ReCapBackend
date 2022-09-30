@@ -12,9 +12,9 @@ namespace Entities.DTOs
         public string BrandName { get; set; }
         public int ModelId { get; set; }
         public string ModelName { get; set; }
+        public short ModelYear { get; set; }
         public int ColorId { get; set; }
         public string ColorName { get; set; }
-        public int ModelYear { get; set; }
         public double DailyPrice { get; set; }
         public string Description { get; set; }
         public List<string> ImagePath { get; set; }

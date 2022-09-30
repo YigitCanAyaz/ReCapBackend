@@ -22,6 +22,7 @@ namespace DataAccess.Concrete.EntityFramework
                               select new CustomerDetailDto
                               {
                                   Id = customer.Id,
+                                  UserId = user.Id,
                                   FirstName = user.FirstName,
                                   LastName = user.LastName,
                                   CompanyName = customer.CompanyName
@@ -40,6 +41,7 @@ namespace DataAccess.Concrete.EntityFramework
                     select new CustomerDetailDto
                     {
                         Id = customer.Id,
+                        UserId = user.Id,
                         FirstName = user.FirstName,
                         LastName = user.LastName,
                         CompanyName = customer.CompanyName
