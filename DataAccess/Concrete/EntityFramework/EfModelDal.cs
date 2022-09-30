@@ -19,11 +19,14 @@ namespace DataAccess.Concrete.EntityFramework
             {
                 var result = (from model in context.Models
                               join brand in context.Brands on model.BrandId equals brand.Id
+                              join color in context.Colors on model.ColorId equals color.Id
                               select new ModelDetailDto
                               {
                                   Id = model.Id,
                                   BrandId = brand.Id,
+                                  ColorId = model.ColorId,
                                   BrandName = brand.Name,
+                                  ColorName = color.Name,
                                   Name = model.Name,
                                   Year = model.Year
                               });
@@ -38,11 +41,14 @@ namespace DataAccess.Concrete.EntityFramework
             {
                 var result = (from model in context.Models
                               join brand in context.Brands on model.BrandId equals brand.Id
+                              join color in context.Colors on model.ColorId equals color.Id
                               select new ModelDetailDto
                               {
                                   Id = model.Id,
                                   BrandId = brand.Id,
+                                  ColorId = model.ColorId,
                                   BrandName = brand.Name,
+                                  ColorName = color.Name,
                                   Name = model.Name,
                                   Year = model.Year
                               });
