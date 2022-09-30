@@ -42,16 +42,16 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getcarsbymodelid")]
-        public IActionResult GetCarsByModelId(int modelId)
-        {
-            var result = _carService.GetAllCarsByModelId(modelId);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
+        //[HttpGet("getcarsbymodelid")]
+        //public IActionResult GetCarsByModelId(int modelId)
+        //{
+        //    var result = _carService.GetAllCarsByModelId(modelId);
+        //    if (result.Success)
+        //    {
+        //        return Ok(result);
+        //    }
+        //    return BadRequest(result);
+        //}
 
         //[HttpGet("getcarsbycolorid")]
         //public IActionResult GetCarsByColorId(int colorId)

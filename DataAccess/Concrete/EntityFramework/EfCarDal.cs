@@ -21,10 +21,11 @@ namespace DataAccess.Concrete.EntityFramework
                               join color in context.Colors on modelColor.ColorId equals color.Id
                               join model in context.Models on modelColor.ModelId equals model.Id
                               join brand in context.Brands on model.BrandId equals brand.Id
-                              join car in context.Cars on modelColor.ModelId equals car.ModelId
+                              join car in context.Cars on modelColor.Id equals car.ModelColorId
                               select new CarDetailDto
                               {
                                   Id = car.Id,
+                                  ModelColorId = modelColor.Id,
                                   BrandId = brand.Id,
                                   BrandName = brand.Name,
                                   ModelId = model.Id,
@@ -49,10 +50,11 @@ namespace DataAccess.Concrete.EntityFramework
                               join color in context.Colors on modelColor.ColorId equals color.Id
                               join model in context.Models on modelColor.ModelId equals model.Id
                               join brand in context.Brands on model.BrandId equals brand.Id
-                              join car in context.Cars on modelColor.ModelId equals car.ModelId
+                              join car in context.Cars on modelColor.Id equals car.ModelColorId
                               select new CarDetailDto
                               {
                                   Id = car.Id,
+                                  ModelColorId = modelColor.Id,
                                   BrandId = brand.Id,
                                   BrandName = brand.Name,
                                   ModelId = model.Id,

@@ -18,10 +18,12 @@ namespace DataAccess.Concrete.EntityFramework
             using (ReCapContext context = new ReCapContext())
             {
                 var result =
-                    (from rental in context.Rentals
-                     join car in context.Cars on rental.CarId equals car.Id
-                     join model in context.Models on car.ModelId equals model.Id
+                    (from modelColor in context.ModelColors
+                     join color in context.Colors on modelColor.ColorId equals color.Id
+                     join model in context.Models on modelColor.ModelId equals model.Id
                      join brand in context.Brands on model.BrandId equals brand.Id
+                     join car in context.Cars on modelColor.Id equals car.ModelColorId
+                     join rental in context.Rentals on car.Id equals rental.CarId
                      join customer in context.Customers on rental.CustomerId equals customer.Id
                      join user in context.Users on customer.UserId equals user.Id
                      select new RentalDetailDto
@@ -47,10 +49,12 @@ namespace DataAccess.Concrete.EntityFramework
             using (ReCapContext context = new ReCapContext())
             {
                 var result =
-                    (from rental in context.Rentals
-                     join car in context.Cars on rental.CarId equals car.Id
-                     join model in context.Models on car.ModelId equals model.Id
+                    (from modelColor in context.ModelColors
+                     join color in context.Colors on modelColor.ColorId equals color.Id
+                     join model in context.Models on modelColor.ModelId equals model.Id
                      join brand in context.Brands on model.BrandId equals brand.Id
+                     join car in context.Cars on modelColor.Id equals car.ModelColorId
+                     join rental in context.Rentals on car.Id equals rental.CarId
                      join customer in context.Customers on rental.CustomerId equals customer.Id
                      join user in context.Users on customer.UserId equals user.Id
                      select new RentalDetailDto
