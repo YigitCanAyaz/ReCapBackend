@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using Entities.DTOs;
 
 namespace DataAccess.Concrete.EntityFramework
 {
@@ -22,6 +23,42 @@ namespace DataAccess.Concrete.EntityFramework
                              where userOperationClaim.UserId == user.Id
                              select new OperationClaim { Id = operationClaim.Id, Name = operationClaim.Name };
                 return result.ToList();
+            }
+        }
+
+        public List<UserForInfoDto> GetAllUserDetails(Expression<Func<UserForInfoDto, bool>> filter = null)
+        {
+            using (ReCapContext context = new ReCapContext())
+            {
+                var result = (from user in context.Users
+                    select new UserForInfoDto
+                    {
+                        Id = user.Id,
+                        FirstName = user.FirstName,
+                        LastName = user.LastName,
+                        Email = user.Email,
+                        Status = user.Status,
+                    });
+
+                return filter == null ? result.ToList() : result.Where(filter).ToList();
+            }
+        }
+
+        public UserForInfoDto GetUserDetails(Expression<Func<UserForInfoDto, bool>> filter)
+        {
+            using (ReCapContext context = new ReCapContext())
+            {
+                var result = (from user in context.Users
+                    select new UserForInfoDto
+                    {
+                        Id = user.Id,
+                        FirstName = user.FirstName,
+                        LastName = user.LastName,
+                        Email = user.Email,
+                        Status = user.Status,
+                    });
+
+                return result.Where(filter).SingleOrDefault();
             }
         }
     }
