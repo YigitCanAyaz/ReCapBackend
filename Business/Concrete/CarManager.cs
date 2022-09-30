@@ -68,11 +68,11 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ModelId == modelId));
         }
 
-        [CacheAspect]
-        public IDataResult<List<Car>> GetAllCarsByColorId(int colorId)
-        {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == colorId));
-        }
+        //[CacheAspect]
+        //public IDataResult<List<Car>> GetAllCarsByColorId(int colorId)
+        //{
+        //    return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == colorId));
+        //}
 
         [CacheRemoveAspect("ICarService.Get")]
         [ValidationAspect(typeof(CarValidator))]
