@@ -57,6 +57,11 @@ namespace Business.Constants.Messages
         public static string ModelUpdated = "Model updated";
         public static string ModelDeleted = "Model deleted";
 
+        // ModelColor Manager
+        public static string ModelColorCreated = "Model color created";
+        public static string ModelColorUpdated = "Model color updated";
+        public static string ModelColorDeleted = "Model color deleted";
+
         // Rental Manager
         public static string RentalCreated = "Rental created";
         public static string RentalUpdated = "Rental updated";
