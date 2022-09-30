@@ -5,6 +5,7 @@ using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Business.BusinessAspects.Autofac;
 using Business.Constants.Messages;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Caching;
@@ -22,6 +23,7 @@ namespace Business.Concrete
             _userOperationClaimDal = userOperationClaimDal;
         }
 
+        [SecuredOperation("admin")]
         [CacheRemoveAspect("IUserOperationClaimService.GetAll")]
         [ValidationAspect(typeof(UserOperationClaimValidator))]
         public IResult Add(UserOperationClaim userOperationClaim)
@@ -30,6 +32,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.UserOperationClaimCreated);
         }
 
+        [SecuredOperation("admin")]
         [CacheRemoveAspect("IUserOperationClaimService.Get")]
         public IResult Delete(UserOperationClaim userOperationClaim)
         {
@@ -37,18 +40,21 @@ namespace Business.Concrete
             return new SuccessResult(Messages.UserOperationClaimDeleted);
         }
 
+        [SecuredOperation("admin")]
         [CacheAspect]
         public IDataResult<List<UserOperationClaim>> GetAll()
         {
             return new SuccessDataResult<List<UserOperationClaim>>(_userOperationClaimDal.GetAll());
         }
 
+        [SecuredOperation("admin")]
         [CacheAspect]
         public IDataResult<UserOperationClaim> GetById(int id)
         {
             return new SuccessDataResult<UserOperationClaim>(_userOperationClaimDal.Get(c => c.Id == id));
         }
 
+        [SecuredOperation("admin")]
         [CacheRemoveAspect("IUserOperationClaimService.Get")]
         [ValidationAspect(typeof(UserOperationClaimValidator))]
         public IResult Update(UserOperationClaim userOperationClaim)
