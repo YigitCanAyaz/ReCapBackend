@@ -44,5 +44,10 @@ namespace Business.Concrete
             return new SuccessDataResult<List<UserForInfoDto>>(_userDal.GetAllUserDetails());
         }
 
+        public IDataResult<UserForInfoDto> GetById(int id)
+        {
+            return new SuccessDataResult<UserForInfoDto>(_userDal.GetUserDetails(u => u.Id == id));
+        }
+
     }
 }
