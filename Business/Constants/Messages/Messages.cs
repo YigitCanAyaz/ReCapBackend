@@ -37,6 +37,16 @@ namespace Business.Constants.Messages
         public static string ColorUpdated = "Color updated";
         public static string ColorDeleted = "Color deleted";
 
+        // OperationClaim Manager
+        public static string OperationClaimCreated = "OperationClaim created";
+        public static string OperationClaimUpdated = "OperationClaim updated";
+        public static string OperationClaimDeleted = "OperationClaim deleted";
+
+        // UserOperationClaim Manager
+        public static string UserOperationClaimCreated = "UserOperationClaim created";
+        public static string UserOperationClaimUpdated = "UserOperationClaim updated";
+        public static string UserOperationClaimDeleted = "UserOperationClaim deleted";
+
         // Customer Manager
         public static string CustomerCreated = "Customer created";
         public static string CustomerUpdated = "Customer updated";
