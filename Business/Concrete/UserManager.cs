@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Text;
 using Business.BusinessAspects.Autofac;
 using Business.Constants.Messages;
+using Entities.DTOs;
 
 namespace Business.Concrete
 {
@@ -38,9 +39,9 @@ namespace Business.Concrete
         }
 
         [SecuredOperation("admin")]
-        public IDataResult<List<User>> GetAll()
+        public IDataResult<List<UserForInfoDto>> GetAll()
         {
-            return new SuccessDataResult<List<User>>(_userDal.GetAll());
+            return new SuccessDataResult<List<UserForInfoDto>>(_userDal.GetAllUserDetails());
         }
 
     }
