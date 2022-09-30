@@ -1,68 +1,59 @@
-﻿using Core.DataAccess.EntityFramework;
-using DataAccess.Abstract;
-using Entities.Concrete;
-using Entities.DTOs;
-using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using Core.DataAccess.EntityFramework;
+using DataAccess.Abstract;
+using Entities.Concrete;
+using Entities.DTOs;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfCarDal : EfEntityRepositoryBase<Car, ReCapContext>, ICarDal
+    public class EfModelColorDal : EfEntityRepositoryBase<ModelColor, ReCapContext>, IModelColorDal
     {
-        public List<CarDetailDto> GetAllCarDetails(Expression<Func<CarDetailDto, bool>> filter = null)
+        public List<ModelColorDetailDto> GetAllModelColorDetails(Expression<Func<ModelColorDetailDto, bool>> filter = null)
         {
             using (ReCapContext context = new ReCapContext())
             {
                 var result = (from modelColor in context.ModelColors
-                              join color in context.Colors on modelColor.ColorId equals color.Id
                               join model in context.Models on modelColor.ModelId equals model.Id
+                              join color in context.Colors on modelColor.ColorId equals color.Id
                               join brand in context.Brands on model.BrandId equals brand.Id
-                              join car in context.Cars on modelColor.ModelId equals car.ModelId
-                              select new CarDetailDto
+                              select new ModelColorDetailDto
                               {
-                                  Id = car.Id,
+                                  Id = modelColor.Id,
                                   BrandId = brand.Id,
                                   BrandName = brand.Name,
                                   ModelId = model.Id,
                                   ModelName = model.Name,
                                   ColorId = color.Id,
                                   ColorName = color.Name,
-                                  Description = car.Description,
-                                  DailyPrice = car.DailyPrice,
-                                  ModelYear = model.Year,
-                                  ImagePath = (from carImage in context.CarImages where car.Id == carImage.CarId select carImage.ImagePath).ToList()
+                                  ModelYear = model.Year
                               });
 
                 return filter == null ? result.ToList() : result.Where(filter).ToList();
             }
         }
 
-        public CarDetailDto GetCarDetails(Expression<Func<CarDetailDto, bool>> filter)
+        public ModelColorDetailDto GetModelColorDetails(Expression<Func<ModelColorDetailDto, bool>> filter)
         {
             using (ReCapContext context = new ReCapContext())
             {
                 var result = (from modelColor in context.ModelColors
-                              join color in context.Colors on modelColor.ColorId equals color.Id
                               join model in context.Models on modelColor.ModelId equals model.Id
+                              join color in context.Colors on modelColor.ColorId equals color.Id
                               join brand in context.Brands on model.BrandId equals brand.Id
-                              join car in context.Cars on modelColor.ModelId equals car.ModelId
-                              select new CarDetailDto
+                              select new ModelColorDetailDto
                               {
-                                  Id = car.Id,
+                                  Id = modelColor.Id,
                                   BrandId = brand.Id,
                                   BrandName = brand.Name,
                                   ModelId = model.Id,
                                   ModelName = model.Name,
-                                  ModelYear = model.Year,
                                   ColorId = color.Id,
                                   ColorName = color.Name,
-                                  Description = car.Description,
-                                  DailyPrice = car.DailyPrice,
-                                  ImagePath = (from carImage in context.CarImages where car.Id == carImage.CarId select carImage.ImagePath).ToList()
+                                  ModelYear = model.Year
                               });
 
                 return result.Where(filter).SingleOrDefault();
