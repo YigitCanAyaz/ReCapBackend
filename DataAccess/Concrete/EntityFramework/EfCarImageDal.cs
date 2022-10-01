@@ -24,13 +24,10 @@ namespace DataAccess.Concrete.EntityFramework
                               join carImage in context.CarImages on car.Id equals carImage.Id
                               select new CarImageDetailDto
                               {
-                                  Id = car.Id,
-                                  ModelColorId = modelColor.Id,
-                                  BrandId = brand.Id,
+                                  Id = carImage.Id,
+                                  CarId = car.Id,
                                   BrandName = brand.Name,
-                                  ModelId = model.Id,
                                   ModelName = model.Name,
-                                  ColorId = color.Id,
                                   ColorName = color.Name,
                                   DailyPrice = car.DailyPrice,
                                   ModelYear = model.Year,
@@ -54,13 +51,10 @@ namespace DataAccess.Concrete.EntityFramework
                               join carImage in context.CarImages on car.Id equals carImage.Id
                               select new CarImageDetailDto
                               {
-                                  Id = car.Id,
-                                  ModelColorId = modelColor.Id,
-                                  BrandId = brand.Id,
+                                  Id = carImage.Id,
+                                  CarId = car.Id,
                                   BrandName = brand.Name,
-                                  ModelId = model.Id,
                                   ModelName = model.Name,
-                                  ColorId = color.Id,
                                   ColorName = color.Name,
                                   DailyPrice = car.DailyPrice,
                                   ModelYear = model.Year,
