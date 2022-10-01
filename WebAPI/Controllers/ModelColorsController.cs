@@ -74,5 +74,27 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+
+        [HttpGet("getallmodelcolordetails")]
+        public IActionResult GetAllModelColorDetails()
+        {
+            var result = _modelColorService.GetAllModelColorDetails();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("getmodelcolordetailsbyid")]
+        public IActionResult GetModelColorDetailsById(int id)
+        {
+            var result = _modelColorService.GetModelColorDetailsById(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
     }
 }

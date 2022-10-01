@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Text;
 using Business.Constants.Messages;
 using Core.Aspects.Autofac.Caching;
+using Entities.DTOs;
 
 namespace Business.Concrete
 {
@@ -54,6 +55,16 @@ namespace Business.Concrete
         {
             _modelColorDal.Update(modelColor);
             return new SuccessResult(Messages.ModelColorUpdated);
+        }
+
+        [CacheAspect]
+        public IDataResult<List<ModelColorDetailDto>> GetAllModelColorDetails()
+        {
+            return new SuccessDataResult<List<ModelColorDetailDto>>(_modelColorDal.GetAllModelColorDetails());
+        }
+        public IDataResult<ModelColorDetailDto> GetModelColorDetailsById(int id)
+        {
+            return new SuccessDataResult<ModelColorDetailDto>(_modelColorDal.GetModelColorDetails(m => m.Id == id));
         }
     }
 }

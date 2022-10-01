@@ -48,6 +48,10 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<ModelDetailDto>>(_modelDal.GetAllModelDetails());
         }
+        public IDataResult<ModelDetailDto> GetModelDetailsById(int id)
+        {
+            return new SuccessDataResult<ModelDetailDto>(_modelDal.GetModelDetails(m => m.Id == id));
+        }
 
         [CacheAspect]
         public IDataResult<List<Model>> GetAllModelsByBrandId(int brandId)
@@ -61,10 +65,6 @@ namespace Business.Concrete
             return new SuccessDataResult<Model>(_modelDal.Get(b => b.Id == id));
         }
 
-        public IDataResult<ModelDetailDto> GetModelDetailsById(int id)
-        {
-            return new SuccessDataResult<ModelDetailDto>(_modelDal.GetModelDetails(m => m.Id == id));
-        }
 
         [CacheRemoveAspect("IModelService.Get")]
         [ValidationAspect(typeof(ModelValidator))]
