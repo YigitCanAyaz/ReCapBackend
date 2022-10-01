@@ -21,7 +21,7 @@ namespace DataAccess.Concrete.EntityFramework
                               join model in context.Models on modelColor.ModelId equals model.Id
                               join brand in context.Brands on model.BrandId equals brand.Id
                               join car in context.Cars on modelColor.Id equals car.ModelColorId
-                              join carImage in context.CarImages on car.Id equals carImage.Id
+                              join carImage in context.CarImages on car.Id equals carImage.CarId
                               select new CarImageDetailDto
                               {
                                   Id = carImage.Id,
@@ -48,7 +48,7 @@ namespace DataAccess.Concrete.EntityFramework
                               join model in context.Models on modelColor.ModelId equals model.Id
                               join brand in context.Brands on model.BrandId equals brand.Id
                               join car in context.Cars on modelColor.Id equals car.ModelColorId
-                              join carImage in context.CarImages on car.Id equals carImage.Id
+                              join carImage in context.CarImages on car.Id equals carImage.CarId
                               select new CarImageDetailDto
                               {
                                   Id = carImage.Id,
