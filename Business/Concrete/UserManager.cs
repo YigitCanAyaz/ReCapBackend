@@ -38,7 +38,7 @@ namespace Business.Concrete
             return new SuccessDataResult<User>(_userDal.Get(u => u.Email == email));
         }
 
-        [SecuredOperation("admin")]
+        //[SecuredOperation("admin")]
         public IDataResult<List<UserForInfoDto>> GetAll()
         {
             return new SuccessDataResult<List<UserForInfoDto>>(_userDal.GetAllUserDetails());

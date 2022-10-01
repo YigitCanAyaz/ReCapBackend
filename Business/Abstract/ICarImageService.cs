@@ -3,6 +3,7 @@ using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Entities.DTOs;
 using Microsoft.AspNetCore.Http;
 
 namespace Business.Abstract
@@ -15,5 +16,8 @@ namespace Business.Abstract
         IDataResult<CarImage> GetById(int id);
         IDataResult<List<CarImage>> GetAllByCarId(int carId);
         IDataResult<List<CarImage>> GetAll();
+
+        IDataResult<List<CarImageDetailDto>> GetAllCarImageDetails();
+        IDataResult<CarImageDetailDto> GetCarImageDetailsById(int id);
     }
 }

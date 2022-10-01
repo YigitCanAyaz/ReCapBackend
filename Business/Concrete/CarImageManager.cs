@@ -12,6 +12,7 @@ using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Business;
 using Core.Utilities.Helpers;
+using Entities.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore.Internal;
 
@@ -121,6 +122,16 @@ namespace Business.Concrete
 
             _carImageDal.Update(carImage);
             return new SuccessResult(Messages.CarImageUpdated);
+        }
+
+        [CacheAspect]
+        public IDataResult<List<CarImageDetailDto>> GetAllCarImageDetails()
+        {
+            return new SuccessDataResult<List<CarImageDetailDto>>(_carImageDal.GetAllCarImageDetails());
+        }
+        public IDataResult<CarImageDetailDto> GetCarImageDetailsById(int id)
+        {
+            return new SuccessDataResult<CarImageDetailDto>(_carImageDal.GetCarImageDetails(m => m.Id == id));
         }
 
         /********************************** PRIVATE METHODS ********************************** */
