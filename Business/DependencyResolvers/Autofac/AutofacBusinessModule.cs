@@ -32,6 +32,9 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<ModelManager>().As<IModelService>().SingleInstance();
             builder.RegisterType<EfModelDal>().As<IModelDal>().SingleInstance();
 
+            builder.RegisterType<ModelColorManager>().As<IModelColorService>().SingleInstance();
+            builder.RegisterType<EfModelColorDal>().As<IModelColorDal>().SingleInstance();
+
             builder.RegisterType<RentalManager>().As<IRentalService>().SingleInstance();
             builder.RegisterType<EfRentalDal>().As<IRentalDal>().SingleInstance();
 
