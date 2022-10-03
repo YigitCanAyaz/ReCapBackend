@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Core.Entities.Concrete;
 using Core.Utilities.Results;
+using Entities.DTOs;
 
 namespace Business.Abstract
 {
@@ -13,5 +14,8 @@ namespace Business.Abstract
         IResult Add(UserOperationClaim userOperationClaim);
         IResult Update(UserOperationClaim userOperationClaim);
         IResult Delete(UserOperationClaim userOperationClaim);
+
+        IDataResult<List<UserOperationClaimDetailDto>> GetAllUserOperationClaimDetails();
+        IDataResult<UserOperationClaimDetailDto> GetUserOperationClaimDetailsById(int id);
     }
 }

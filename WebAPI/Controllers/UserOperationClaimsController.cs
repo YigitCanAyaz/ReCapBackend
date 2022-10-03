@@ -75,5 +75,28 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+
+
+        [HttpGet("getalluseroperationclaimdetails")]
+        public IActionResult GetAllUserOperationClaimDetails()
+        {
+            var result = _userOperationClaimService.GetAllUserOperationClaimDetails();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("getuseroperationclaimdetailsbyid")]
+        public IActionResult GetUserOperationClaimDetailsById(int id)
+        {
+            var result = _userOperationClaimService.GetUserOperationClaimDetailsById(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
     }
 }

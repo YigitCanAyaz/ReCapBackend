@@ -11,6 +11,7 @@ using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
 using Core.Entities.Concrete;
+using Entities.DTOs;
 
 namespace Business.Concrete
 {
@@ -61,6 +62,18 @@ namespace Business.Concrete
         {
             _userOperationClaimDal.Update(userOperationClaim);
             return new SuccessResult(Messages.UserOperationClaimUpdated);
+        }
+
+
+
+        [CacheAspect]
+        public IDataResult<List<UserOperationClaimDetailDto>> GetAllUserOperationClaimDetails()
+        {
+            return new SuccessDataResult<List<UserOperationClaimDetailDto>>(_userOperationClaimDal.GetAllUserOperationClaimDetails());
+        }
+        public IDataResult<UserOperationClaimDetailDto> GetUserOperationClaimDetailsById(int id)
+        {
+            return new SuccessDataResult<UserOperationClaimDetailDto>(_userOperationClaimDal.GetUserOperationClaimDetails(m => m.Id == id));
         }
     }
 }
