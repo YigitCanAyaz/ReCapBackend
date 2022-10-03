@@ -10,7 +10,7 @@ using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfOperationClaim: EfEntityRepositoryBase<OperationClaim, ReCapContext>, IOperationClaimDal
+    public class EfOperationClaimDal: EfEntityRepositoryBase<OperationClaim, ReCapContext>, IOperationClaimDal
     {
 
     }

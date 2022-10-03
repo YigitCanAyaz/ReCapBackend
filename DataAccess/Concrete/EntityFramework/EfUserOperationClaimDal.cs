@@ -11,7 +11,7 @@ using Entities.DTOs;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfUserOperationClaimOperationClaimDal : EfEntityRepositoryBase<UserOperationClaim, ReCapContext>, IUserOperationClaimDal
+    public class EfUserOperationClaimDal : EfEntityRepositoryBase<UserOperationClaim, ReCapContext>, IUserOperationClaimDal
     {
         public List<UserOperationClaimDetailDto> GetAllUserOperationClaimDetails(Expression<Func<UserOperationClaimDetailDto, bool>> filter = null)
         {
