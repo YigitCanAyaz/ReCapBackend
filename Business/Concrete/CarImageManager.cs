@@ -103,7 +103,7 @@ namespace Business.Concrete
         [ValidationAspect(typeof(CarImageValidator))]
         public IResult Update(IFormFile file, CarImage carImage)
         {
-            var result = BusinessRules.Run(CheckIfCarIdIsSame(carImage.Id, carImage.CarId));
+            var result = BusinessRules.Run(/*CheckIfCarIdIsSame(carImage.Id, carImage.CarId)*/);
 
             if (result != null)
             {
@@ -160,9 +160,9 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        private IResult CheckIfCarIdIsSame(int carImageId, int carId)
+        private IResult CheckIfCarIdIsSame(int id, int carId)
         {
-            var result = _carImageDal.Get(c => c.Id == carImageId).CarId;
+            var result = _carImageDal.Get(c => c.Id == id).CarId;
 
             if (result != carId)
             {
