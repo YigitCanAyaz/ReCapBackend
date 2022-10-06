@@ -17,5 +17,6 @@ namespace Business.Abstract
 
         IDataResult<List<CustomerDetailDto>> GetAllCustomerDetails();
         IDataResult<CustomerDetailDto> GetCustomerDetailsById(int id);
+        IDataResult<int> GetAllCustomerLength();
     }
 }

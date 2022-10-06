@@ -18,5 +18,6 @@ namespace Business.Abstract
 
         IDataResult<List<ModelDetailDto>> GetAllModelDetails();
         IDataResult<ModelDetailDto> GetModelDetailsById(int id);
+        IDataResult<int> GetAllModelLength();
     }
 }
