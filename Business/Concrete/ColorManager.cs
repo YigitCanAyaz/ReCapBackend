@@ -43,6 +43,12 @@ namespace Business.Concrete
         }
 
         [CacheAspect]
+        public IDataResult<int> GetAllColorLength()
+        {
+            return new SuccessDataResult<int>(_colorDal.GetAll().Count);
+        }
+
+        [CacheAspect]
         public IDataResult<Color> GetById(int id)
         {
             return new SuccessDataResult<Color>(_colorDal.Get(c => c.Id == id));

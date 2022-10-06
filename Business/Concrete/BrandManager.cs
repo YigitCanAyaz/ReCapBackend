@@ -43,6 +43,12 @@ namespace Business.Concrete
         }
 
         [CacheAspect]
+        public IDataResult<int> GetAllBrandLength()
+        {
+            return new SuccessDataResult<int>(_brandDal.GetAll().Count);
+        }
+
+        [CacheAspect]
         public IDataResult<Brand> GetById(int id)
         {
             return new SuccessDataResult<Brand>(_brandDal.Get(b => b.Id == id));

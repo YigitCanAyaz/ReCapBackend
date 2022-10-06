@@ -53,6 +53,12 @@ namespace Business.Concrete
         }
 
         [CacheAspect]
+        public IDataResult<int> GetAllRentalLength()
+        {
+            return new SuccessDataResult<int>(_rentalDal.GetAll().Count);
+        }
+
+        [CacheAspect]
         public IDataResult<List<RentalDetailDto>> GetAllRentalDetails()
         {
             return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetAllRentalDetails());

@@ -44,6 +44,12 @@ namespace Business.Concrete
         }
 
         [CacheAspect]
+        public IDataResult<int> GetAllCustomerLength()
+        {
+            return new SuccessDataResult<int>(_customerDal.GetAll().Count);
+        }
+
+        [CacheAspect]
         public IDataResult<List<CustomerDetailDto>> GetAllCustomerDetails()
         {
             return new SuccessDataResult<List<CustomerDetailDto>>(_customerDal.GetAllCustomerDetails());
