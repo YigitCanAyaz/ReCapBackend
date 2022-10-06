@@ -36,6 +36,7 @@ namespace DataAccess.Concrete.EntityFramework
                          ModelYear = model.Year,
                          FirstName = user.FirstName,
                          LastName = user.LastName,
+                         DailyPrice = car.DailyPrice,
                          ImagePath = (from carImage in context.CarImages where car.Id == carImage.CarId select carImage.ImagePath).ToList(),
                          RentDate = rental.RentDate,
                          ReturnDate = rental.ReturnDate
