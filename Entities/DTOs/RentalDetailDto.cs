@@ -15,6 +15,7 @@ namespace Entities.DTOs
         public short ModelYear { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public double DailyPrice { get; set; }
         public List<string> ImagePath { get; set; }
         public DateTime RentDate { get; set; }
         public DateTime? ReturnDate { get; set; }
