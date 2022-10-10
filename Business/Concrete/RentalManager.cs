@@ -73,13 +73,13 @@ namespace Business.Concrete
         [CacheAspect]
         public IDataResult<List<RentalDetailDto>> GetAllRentalDetailsByCarId(int carId)
         {
-            return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetAllRentalDetails(r => r.Id == carId));
+            return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetAllRentalDetails(r => r.CarId == carId));
         }
 
         [CacheAspect]
         public IDataResult<List<RentalDetailDto>> GetAllRentalDetailsByCustomerId(int customerId)
         {
-            return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetAllRentalDetails(r => r.Id == customerId));
+            return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetAllRentalDetails(r => r.CustomerId == customerId));
         }
 
         [CacheAspect]
