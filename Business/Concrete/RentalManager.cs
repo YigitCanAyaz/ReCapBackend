@@ -27,7 +27,7 @@ namespace Business.Concrete
         [ValidationAspect(typeof(RentalValidator))]
         public IResult Add(Rental rental)
         {
-            var result = BusinessRules.Run(CheckIfCarHasBeenReturned(rental.Id));
+            var result = BusinessRules.Run(CheckIfCarHasBeenReturned(rental.CarId));
 
             if (result != null)
             {
@@ -98,12 +98,20 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
+
         [CacheRemoveAspect("IRentalService.Get")]
         [ValidationAspect(typeof(RentalValidator))]
         public IResult Update(Rental rental)
         {
             _rentalDal.Update(rental);
             return new SuccessResult(Messages.RentalUpdated);
+        }
+
+        public IResult IsCarAvailable(int carId)
+        {
+            var result = BusinessRules.Run(CheckIfCarHasBeenReturned(carId));
+
+            return result;
         }
 
         /********************************** PRIVATE METHODS ********************************** */
@@ -114,7 +122,7 @@ namespace Business.Concrete
 
             foreach (var car in result)
             {
-                if (car.ReturnDate == DateTime.MinValue)
+                if (car.ReturnDate == DateTime.MinValue || car.ReturnDate > DateTime.Now)
                 {
                     return new ErrorResult();
                 }
@@ -122,5 +130,6 @@ namespace Business.Concrete
 
             return new SuccessResult();
         }
+
     }
 }
