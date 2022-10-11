@@ -107,11 +107,16 @@ namespace Business.Concrete
             return new SuccessResult(Messages.RentalUpdated);
         }
 
-        public IResult IsCarAvailable(int carId)
+        public IDataResult<bool> IsCarAvailable(int carId)
         {
             var result = BusinessRules.Run(CheckIfCarHasBeenReturned(carId));
 
-            return result;
+            if (!result.Success)
+            {
+                return new ErrorDataResult<bool>(false);
+            }
+
+            return new SuccessDataResult<bool>(true);
         }
 
         /********************************** PRIVATE METHODS ********************************** */
